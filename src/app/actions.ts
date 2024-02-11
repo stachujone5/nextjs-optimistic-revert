@@ -82,11 +82,17 @@ export async function getData({ cursor }: { cursor?: string }) {
   };
 }
 
-export async function toggleFavorite({ id }: { id: string }) {
+export async function toggleFavorite({
+  id,
+  isFavorite,
+}: {
+  id: string;
+  isFavorite: boolean;
+}) {
   const item = data.find((item) => item.id === id);
 
   if (item) {
-    item.isFavorite = !item.isFavorite;
+    item.isFavorite = isFavorite;
   }
 
   revalidatePath("/");
